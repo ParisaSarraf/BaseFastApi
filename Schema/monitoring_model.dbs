@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="PostgreSQL" id="Project_2574" database="PostgreSQL" >
+	<schema name="public" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="access" >
+			<column name="access_id" type="integer" jt="4" mandatory="y" />
+			<column name="access_panel_online_show" type="boolean" jt="-7" />
+			<column name="access_panel_data_management" type="boolean" jt="-7" />
+			<column name="access_panel_consumer_management" type="boolean" jt="-7" />
+			<column name="access_panel_center_management" type="boolean" jt="-7" />
+			<column name="access_panel_control_stations" type="boolean" jt="-7" />
+			<column name="access_panel_user_management" type="boolean" jt="-7" />
+			<column name="access_panel_reporting" type="boolean" jt="-7" />
+			<column name="access_panel_connection" type="boolean" jt="-7" />
+			<column name="access_panel_setting" type="boolean" jt="-7" />
+			<column name="user_id" type="integer" jt="4" />
+			<index name="pk_access_access_id" unique="PRIMARY_KEY" >
+				<column name="access_id" />
+			</index>
+		</table>
+		<table name="users" >
+			<column name="user_id" type="integer" jt="4" mandatory="y" />
+			<column name="user_username" type="varchar" length="31" jt="12" />
+			<column name="user_name_surname" type="varchar" length="63" jt="12" />
+			<column name="user_password" type="varchar" length="63" jt="12" />
+			<column name="user_national_code" type="varchar" length="10" jt="12" />
+			<column name="user_is_admin" type="boolean" jt="-7" />
+			<column name="user_presence" type="time" jt="92" />
+			<index name="pk_users_user_id" unique="PRIMARY_KEY" >
+				<column name="user_id" />
+			</index>
+			<index name="user_username" unique="UNIQUE_KEY" >
+				<column name="user_username" />
+			</index>
+		</table>
+		<sequence name="access_id_seq" options="START WITH 1" />
+		<sequence name="users_id_seq" options="START WITH 1" />
+	</schema>
+	<connector name="PostgreSQL" database="PostgreSQL" driver_class="org.postgresql.Driver" driver_jar="postgresql-42.2.16.jar" driver_desc="Standard" host="localhost" port="5432" instance="monitoring" user="postgres" passwd="MTIzNDU2Nzg5" />
+	<layout name="Default Layout" id="Layout_15e0" show_relation="columns" >
+		<entity schema="public" name="access" color="C1D8EE" x="352" y="48" />
+		<entity schema="public" name="users" color="C1D8EE" x="48" y="48" />
+		<script name="SQL_Editor" id="Editor_110a" language="SQL" >
+			<string><![CDATA[INSERT INTO users (user_username, user_name_surname, user_password, user_national_code, user_is_admin)
+VALUES ('string', 'string', '$2b$12$fFnlgy6EMDBVinS4n4KH8ehqHlkvNWW1mmtdswkXAnlBn06ygtHzu', 'string', True) RETURNING users.user_id;]]></string>
+		</script>
+	</layout>
+</project>
